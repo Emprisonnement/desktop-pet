@@ -2,6 +2,17 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 import random
+import os
+import sys
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 
 class DesktopPet:
     def __init__(self):
@@ -14,7 +25,7 @@ class DesktopPet:
         except:
             pass
 
-        self.img=Image.open('pet.png')
+        self.img = Image.open(resource_path("pet.png"))
         self.photo=ImageTk.PhotoImage(self.img)
         self.label=tk.Label(self.root,image=self.photo,bg='white',borderwidth=0)
         self.label.pack()
